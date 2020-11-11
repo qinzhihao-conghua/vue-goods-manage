@@ -33,6 +33,7 @@ export default {
       },
     };
   },
+
   methods: {
     async login() {
       const res = await this.$axios.post("login", this.formData);

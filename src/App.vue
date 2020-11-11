@@ -4,6 +4,20 @@
   </div>
 </template>
 
+<script>
+export default {
+  name: "app",
+  beforeCreate() {
+    const token = sessionStorage.getItem("token");
+    if (!token) {
+      this.$router.push({ name: "login" });
+    } else {
+      this.$router.push({ name: "home" });
+    }
+  },
+};
+</script>
+
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
