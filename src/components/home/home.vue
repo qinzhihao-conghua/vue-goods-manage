@@ -136,6 +136,10 @@ export default {
     background-color: #d3dce6;
     .aside-content {
       width: 100%;
+      height: 100%;
+      .el-menu-vertical {
+        height: 100%;
+      }
     }
   }
   .main {
