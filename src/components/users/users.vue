@@ -83,9 +83,10 @@
         <el-form-item label="用户名" :label-width="'100px'">
           {{ currentUser.username }}
         </el-form-item>
-        <el-form-item label="邮箱" :label-width="'100px'">
-          <el-select v-model="value" placeholder="请选择">
-            <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" :disabled="item.disabled">
+        <el-form-item label="角色" :label-width="'100px'">
+          <el-select v-model="currentUser.rid" placeholder="请选择">
+            <el-option label="请选择" :value="-1"></el-option>
+            <el-option v-for="item in usersRole" :key="item.id" :label="item.roleName" :value="item.id" :disabled="item.disabled">
             </el-option>
           </el-select>
         </el-form-item>
@@ -119,6 +120,7 @@ export default {
         email: "",
         mobile: "",
       },
+      usersRole: [],
       currentUser: {},
     };
   },
@@ -222,12 +224,31 @@ export default {
         this.$message.error(msg);
       }
     },
-    openArrageUserWindow(userItem) {
+    async openArrageUserWindow(userItem) {
       this.arrageUserWindow = true;
-      console.log("1111", userItem);
-      this.currentUser = userItem;
+      const userRoles = await this.$axios.get(`roles`);
+      const userInfo = await this.$axios.get(`users/${userItem.id}`);
+      console.log("1111", userInfo);
+      const { meta: { msg, status }, data } = userInfo.data;
+      if (status === 200) {
+        this.currentUser = data;
+      }
+      if (userRoles.data.meta.status === 200) {
+        this.usersRole = userRoles.data.data;
+      }
     },
-    arrageUserHandle() { },
+    async arrageUserHandle() {
+      const res = await this.$axios.put(`users/${this.currentUser.id}/role`, { rid: this.currentUser.rid });
+      const { meta: { msg, status } } = res.data;
+      if (status === 200) {
+        this.$message.success(msg);
+        this.arrageUserWindow = false;
+        this.pagenum = 1;
+        this.getUserList();
+      } else {
+        this.$message.error(msg);
+      }
+    },
     handleSizeChange(value) {
       this.pagenum = 1;
       this.pagesize = value;
