@@ -5,22 +5,10 @@
       <el-breadcrumb-item>用户管理</el-breadcrumb-item>
       <el-breadcrumb-item>用户列表</el-breadcrumb-item>
     </el-breadcrumb>
-    <el-input
-      placeholder="请输入内容"
-      clearable
-      v-model="query"
-      @clear="clearQuery()"
-      class="input-with-select"
-    >
-      <el-button
-        slot="append"
-        @click="searchUser()"
-        icon="el-icon-search"
-      ></el-button>
+    <el-input placeholder="请输入内容" clearable v-model="query" @clear="clearQuery()" class="input-with-select">
+      <el-button slot="append" @click="searchUser()" icon="el-icon-search"></el-button>
     </el-input>
-    <el-button type="success" @click="addUser()" class="add-user"
-      >添加用户</el-button
-    >
+    <el-button type="success" @click="addUser()" class="add-user">添加用户</el-button>
     <el-table :data="userlist" class="table-container">
       <el-table-column type="index" label="#" width="60"> </el-table-column>
       <el-table-column prop="username" label="姓名"> </el-table-column>
@@ -36,54 +24,22 @@
       </el-table-column>
       <el-table-column label="用户状态">
         <template slot-scope="scope">
-          <el-switch
-            v-model="scope.row.mg_state"
-            active-color="#13ce66"
-            inactive-color="#ff4949"
-            @change="changeState(scope.row, $event)"
-          >
+          <el-switch v-model="scope.row.mg_state" active-color="#13ce66" inactive-color="#ff4949" @change="changeState(scope.row, $event)">
           </el-switch>
         </template>
       </el-table-column>
       <el-table-column prop="address" label="操作">
         <template slot-scope="scope">
-          <el-button
-            type="primary"
-            @click="openEditWindow(scope.row)"
-            size="mini"
-            plain
-            icon="el-icon-edit"
-            circle
-          ></el-button>
-          <el-button
-            type="danger"
-            @click="deleteUser(scope.row)"
-            size="mini"
-            plain
-            icon="el-icon-delete"
-            circle
-          >
+          <el-button type="primary" @click="openEditWindow(scope.row)" size="mini" plain icon="el-icon-edit" circle>
           </el-button>
-          <el-button
-            type="success"
-            @click="openArrageUserWindow(scope.row)"
-            size="mini"
-            plain
-            icon="el-icon-check"
-            circle
-          ></el-button>
+          <el-button type="danger" @click="deleteUser(scope.row)" size="mini" plain icon="el-icon-delete" circle>
+          </el-button>
+          <el-button type="success" @click="openArrageUserWindow(scope.row)" size="mini" plain icon="el-icon-check" circle>
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
-    <el-pagination
-      @size-change="handleSizeChange"
-      @current-change="handleCurrentChange"
-      :current-page="pagenum"
-      :page-sizes="[2, 4, 6, 8]"
-      :page-size="pagesize"
-      layout="total, sizes, prev, pager, next, jumper"
-      :total="total"
-    >
+    <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="pagenum" :page-sizes="[2, 4, 6, 8]" :page-size="pagesize" layout="total, sizes, prev, pager, next, jumper" :total="total">
     </el-pagination>
     <el-dialog title="添加用户" :visible.sync="addUserWindow">
       <el-form :model="form">
@@ -108,11 +64,7 @@
     <el-dialog title="编辑用户" :visible.sync="editUserWindow">
       <el-form :model="form">
         <el-form-item label="用户名" :label-width="'100px'">
-          <el-input
-            v-model="form.username"
-            disabled
-            autocomplete="off"
-          ></el-input>
+          <el-input v-model="form.username" disabled autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="邮箱" :label-width="'100px'">
           <el-input v-model="form.email" autocomplete="off"></el-input>
@@ -133,13 +85,7 @@
         </el-form-item>
         <el-form-item label="邮箱" :label-width="'100px'">
           <el-select v-model="value" placeholder="请选择">
-            <el-option
-              v-for="item in options"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-              :disabled="item.disabled"
-            >
+            <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" :disabled="item.disabled">
             </el-option>
           </el-select>
         </el-form-item>
@@ -159,7 +105,7 @@ export default {
   props: {},
   data() {
     return {
-      query: "",
+      query: '',
       userlist: [],
       pagenum: 1,
       pagesize: 3,
@@ -281,7 +227,7 @@ export default {
       console.log("1111", userItem);
       this.currentUser = userItem;
     },
-    arrageUserHandle() {},
+    arrageUserHandle() { },
     handleSizeChange(value) {
       this.pagenum = 1;
       this.pagesize = value;
@@ -290,8 +236,8 @@ export default {
     handleCurrentChange(value) {
       this.pagenum = value;
       this.getUserList();
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>

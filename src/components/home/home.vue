@@ -18,14 +18,7 @@
     <el-container>
       <el-aside class="aside" width="200px">
         <el-col :span="12" class="aside-content">
-          <el-menu
-            unique-opened
-            default-active="users"
-            class="el-menu-vertical"
-            :router="true"
-            @open="handleOpen"
-            @close="handleClose"
-          >
+          <el-menu unique-opened default-active="users" class="el-menu-vertical" :router="true" @open="handleOpen" @close="handleClose">
             <el-submenu index="1">
               <template slot="title">
                 <i class="el-icon-location"></i>
@@ -107,14 +100,14 @@ export default {
     return {};
   },
   methods: {
-    handleOpen() {},
-    handleClose() {},
+    handleOpen() { },
+    handleClose() { },
     logout() {
       sessionStorage.clear();
       this.$message.success("退出成功");
       this.$router.push({ name: "login" });
     },
-  },
+  }
 };
 </script>
 <style lang="scss" scoped>

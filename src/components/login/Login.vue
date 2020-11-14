@@ -1,21 +1,14 @@
 <template>
   <div class="login-container">
-    <el-form
-      class="login-form"
-      label-position="top"
-      label-width="80px"
-      :model="formData"
-    >
+    <el-form class="login-form" label-position="top" label-width="80px" :model="formData">
       <h2>登陆</h2>
       <el-form-item label="用户名">
         <el-input v-model="formData.username"></el-input>
       </el-form-item>
       <el-form-item label="密码">
-        <el-input v-model="formData.password"></el-input>
+        <el-input v-model="formData.password" @keyup.enter.native="login()"></el-input>
       </el-form-item>
-      <el-button class="login-btn" @click.prevent="login()" type="primary"
-        >登陆</el-button
-      >
+      <el-button class="login-btn" @click.prevent="login()" type="primary">登陆</el-button>
     </el-form>
   </div>
 </template>
@@ -45,7 +38,7 @@ export default {
       } else {
         this.$message({ message: meta.msg, type: "warning" });
       }
-    },
+    }
   },
 };
 </script>
