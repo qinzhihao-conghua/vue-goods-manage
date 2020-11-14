@@ -11,9 +11,10 @@ export default {
     const token = sessionStorage.getItem("token");
     if (!token) {
       this.$router.push({ name: "login" });
-    } else {
-      this.$router.push({ name: "home" });
     }
+    // else {
+    //   this.$router.push({ name: "home" });
+    // }
   },
 };
 </script>

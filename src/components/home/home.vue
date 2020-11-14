@@ -18,7 +18,7 @@
     <el-container>
       <el-aside class="aside" width="200px">
         <el-col :span="12" class="aside-content">
-          <el-menu unique-opened default-active="users" class="el-menu-vertical" :router="true" @open="handleOpen" @close="handleClose">
+          <el-menu unique-opened class="el-menu-vertical" :router="true" @open="handleOpen" @close="handleClose">
             <el-submenu index="1">
               <template slot="title">
                 <i class="el-icon-location"></i>
@@ -38,7 +38,7 @@
                 <i class="el-icon-menu"></i>
                 <span>角色列表</span>
               </el-menu-item>
-              <el-menu-item index="4">
+              <el-menu-item index="rights">
                 <i class="el-icon-menu"></i>
                 <span>权限列表</span>
               </el-menu-item>

@@ -1,10 +1,6 @@
 <template>
   <el-card class="box-card">
-    <el-breadcrumb separator="/">
-      <el-breadcrumb-item>首页</el-breadcrumb-item>
-      <el-breadcrumb-item>用户管理</el-breadcrumb-item>
-      <el-breadcrumb-item>用户列表</el-breadcrumb-item>
-    </el-breadcrumb>
+    <zh-bread :level1="'用户管理'" :level2="'用户列表'"></zh-bread>
     <el-input placeholder="请输入内容" clearable v-model="query" @clear="clearQuery()" class="input-with-select">
       <el-button slot="append" @click="searchUser()" icon="el-icon-search"></el-button>
     </el-input>
@@ -129,8 +125,7 @@ export default {
   },
   methods: {
     async getUserList() {
-      const token = sessionStorage.getItem("token");
-      this.$axios.defaults.headers.common["Authorization"] = token;
+
       const res = await this.$axios.get(
         `users?query=${this.query}&pagenum=${this.pagenum}&pagesize=${this.pagesize}`
       );
