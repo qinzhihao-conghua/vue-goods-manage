@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import users from '@/components/users/users.vue'
 import rights from '@/components/rights/rights.vue'
+import roles from '@/components/roles/roles.vue'
 
 Vue.use(VueRouter)
 
@@ -20,7 +21,8 @@ const routes = [
     children: [
       // 子路由注意要加/开头，不然找不到
       { path: '/users', name: 'users', component: users },
-      { path: '/rights', name: 'rights', component: rights }
+      { path: '/rights', name: 'rights', component: rights },
+      { path: '/roles', name: 'roles', component: roles }
     ]
   },
 ]
