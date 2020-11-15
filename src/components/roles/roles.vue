@@ -82,6 +82,7 @@ export default {
     this.getRolesList();
   },
   methods: {
+    addUser() { },
     async getRolesList() {
       const res = await this.$axios.get(`roles`);
       console.log('角色', res);
@@ -98,7 +99,27 @@ export default {
         this.$message.error(res.data.meta.msg);
       }
     },
-    deleteUser() { },
+    deleteUser(userRoles) {
+      this.$confirm("确定要删除该角色?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+      })
+        .then(async () => {
+          const res = await this.$axios.delete(`roles/${userRoles.id}`);
+          const {
+            meta: { status, msg },
+          } = res.data;
+          if (status === 200) {
+            this.$message({ type: "success", message: msg });
+            this.pagenum = 1;
+            this.getUserList();
+          }
+        })
+        .catch(() => {
+          this.$message({ type: "info", message: "已取消删除" });
+        });
+    },
     openEditWindow() { },
     async openArrangeWindow(userRoles) {
       this.roleId = userRoles.id;

@@ -174,7 +174,7 @@ export default {
         type: "warning",
       })
         .then(async () => {
-          const res = await this.$axios.post(`users/${userItem.is}`);
+          const res = await this.$axios.delete(`users/${userItem.id}`);
           const {
             meta: { status, msg },
           } = res.data;
