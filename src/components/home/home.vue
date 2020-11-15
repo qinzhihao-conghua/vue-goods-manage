@@ -15,7 +15,7 @@
         </el-col>
       </el-row>
     </el-header>
-    <el-container>
+    <el-container class="main-container">
       <el-aside class="aside" width="200px">
         <el-col :span="12" class="aside-content">
           <el-menu unique-opened class="el-menu-vertical" :router="true" @open="handleOpen" @close="handleClose">
@@ -84,13 +84,16 @@ export default {
       width: 100%;
     }
   }
-  .aside {
-    background-color: #d3dce6;
-    .aside-content {
-      width: 100%;
-      height: 100%;
-      .el-menu-vertical {
+  .main-container {
+    // height: 100%;
+    .aside {
+      background-color: #d3dce6;
+      .aside-content {
+        width: 100%;
         height: 100%;
+        .el-menu-vertical {
+          height: 100%;
+        }
       }
     }
   }
