@@ -82,7 +82,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .box-card {
-  height: 100%;
+  //   height: 100%;
   .alert {
     margin-top: 16px;
   }

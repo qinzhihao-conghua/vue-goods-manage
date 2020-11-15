@@ -30,7 +30,7 @@ const routes = [
       { path: '/rights', name: 'rights', component: rights },
       { path: '/roles', name: 'roles', component: roles },
       { path: '/goods', name: 'goods-list', component: goodsList },
-      { path: '/goods/goods-add', name: 'goods-add', component: goodsAdd },
+      { path: '/add', name: 'goods-add', component: goodsAdd },
       { path: '/params', name: 'params', component: params },
       { path: '/categories', name: 'categories', component: categories },
       { path: '/orders', name: 'orders', component: orders },

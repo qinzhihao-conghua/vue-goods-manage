@@ -85,9 +85,11 @@ export default {
     }
   }
   .main-container {
-    // height: 100%;
+    height: calc(100% - 60px);
     .aside {
       background-color: #d3dce6;
+      height: 100%;
+      overflow: auto;
       .aside-content {
         width: 100%;
         height: 100%;

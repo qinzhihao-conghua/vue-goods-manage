@@ -4,7 +4,7 @@
     <el-input placeholder="请输入内容" clearable v-model="query" @clear="clearQuery()" class="input-with-select">
       <el-button slot="append" @click="searchGoods()" icon="el-icon-search"></el-button>
     </el-input>
-    <el-button type="success" @click="$router.push({path:'/goods/goods-add'})" class="add-user">添加商品</el-button>
+    <el-button type="success" @click="$router.push({name:'goods-add'})" class="add-user">添加商品</el-button>
     <el-table :data="goodsList" class="table-container">
       <el-table-column type="index" label="#" width="60"> </el-table-column>
       <el-table-column prop="username" label="商品名称"> </el-table-column>
