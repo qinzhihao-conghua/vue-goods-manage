@@ -41,6 +41,8 @@ const routes = [
 
 const router = new VueRouter({
   mode: 'history',
+  // 无法配合element组件
+  linkActiveClass: 'active',
   base: process.env.BASE_URL,
   routes
 });

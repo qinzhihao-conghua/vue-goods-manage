@@ -7,13 +7,13 @@
     <el-button type="success" @click="$router.push({name:'goods-add'})" class="add-user">添加商品</el-button>
     <el-table :data="goodsList" class="table-container">
       <el-table-column type="index" label="#" width="60"> </el-table-column>
-      <el-table-column prop="username" label="商品名称"> </el-table-column>
-      <el-table-column prop="role_name" label="商品价格(元)"> </el-table-column>
-      <el-table-column prop="email" label="商品重量"> </el-table-column>
-      <el-table-column prop="mobile" label="电话"> </el-table-column>
+      <el-table-column prop="goods_name" label="商品名称"> </el-table-column>
+      <el-table-column prop="goods_price" label="商品价格(元)"> </el-table-column>
+      <el-table-column prop="goods_weight" label="商品重量"> </el-table-column>
+      <el-table-column prop="goods_number" label="商品数量"> </el-table-column>
       <el-table-column label="创建日期">
         <template slot-scope="scope">
-          {{ scope.row.create_time | frmDate }}
+          {{ scope.row.add_time | frmDate }}
         </template>
       </el-table-column>
       <el-table-column prop="address" label="操作">
@@ -60,24 +60,36 @@ export default {
       query: '',
       goodsList: [],
       pagenum: 1,
-      pagesize: 3,
+      pagesize: 15,
       total: -1,
     };
+  },
+  created() {
+    this.getGoodsList();
   },
   methods: {
     clearQuery() { },
     searchGoods() { },
-    // addGoods() { },
+    async getGoodsList() {
+      const res = await this.$axios.get(`goods?query=${this.query}&pagenum=${this.pagenum}&pagesize=${this.pagesize}`);
+      console.log('商品列表', res);
+      if (res.data.meta.status === 200) {
+        this.goodsList = res.data.data.goods;
+        this.total = res.data.data.total;
+      } else {
+        this.$message.error(res.data.meta.msg);
+      }
+    },
     deleteGoods(goodsItem) { },
     openEditWindow(goodsItem) { },
     handleSizeChange(value) {
       this.pagenum = 1;
       this.pagesize = value;
-      this.getUserList();
+      this.getGoodsList();
     },
     handleCurrentChange(value) {
       this.pagenum = value;
-      this.getUserList();
+      this.getGoodsList();
     }
   }
 
@@ -85,7 +97,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .box-card {
-  height: 100%;
+  min-height: 100%;
   .el-input-group {
     margin-top: 16px;
     width: 300px;

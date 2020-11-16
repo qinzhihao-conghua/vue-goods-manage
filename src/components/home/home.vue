@@ -57,6 +57,7 @@ export default {
       const res = await this.$axios.get(`menus`);
       if (res.data.meta.status === 200) {
         this.menus = res.data.data;
+        console.log('导航菜单', this.menus);
       }
     },
     handleOpen() { },
@@ -73,7 +74,7 @@ export default {
 .home-container {
   height: 100%;
   .header {
-    background-color: #b3d0b1;
+    background-color: #F44336;
     display: flex;
     justify-content: space-between;
     padding-left: 0;
