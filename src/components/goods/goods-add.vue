@@ -14,7 +14,7 @@
     <el-form :label-position="'top'" label-width="80px" :model="form">
       <el-tabs @tab-click="tabClick($event)" v-model="active" :tab-position="'left'">
         <el-tab-pane name="1" label="基本信息">
-          <el-form-item label="名称      ">
+          <el-form-item label="名称">
             <el-input v-model="form.goods_name"></el-input>
           </el-form-item>
           <el-form-item label="价格">
